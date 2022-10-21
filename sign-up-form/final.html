@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <title>회원가입</title>
+  <link rel="stylesheet" href="./final.css">
+  <script src="./final.js"></script>
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <h2 class="title">코드캠프 회원가입<h2>
+
+    <input type="text" placeholder="이메일을 입력해 주세요." id="email">
+    <div id="error__email" class="error"></div>
+    <input type="text" placeholder="이름을 입력해 주세요." id="userName">
+    <div id="error__userName" class="error"></div>
+    <input type="password" placeholder="비밀번호를 입력해 주세요." id="password1">
+    <div id="error__password1" class="error"></div>
+    <input type="password" placeholder="비밀번호를 다시 입력해 주세요." id="password2">
+    <div id="error__password2" class="error"></div>
+
+
+    <div class="input__phone">
+      <input type="text" class="phone" id="phone1" maxlength="3" oninput="checkPhone1()"><span>-</span>
+      <input type="text" class="phone" id="phone2" maxlength="4" oninput="checkPhone2()"><span>-</span>
+      <input type="text" class="phone" id="phone3" maxlength="4" oninput="checkPhone3()">
+    </div>
+
+    <div class="check__phone__number">
+      <div class="tokenbox">
+        <div id="token" class="numbers">000000</div>
+        <button id="token__make__btn" class="btn-small" disabled onclick="getToken()">인증번호 전송</button>
+      </div>
+      <div class="tokenbox">
+        <div id="token__timer" class="numbers">3:00</div>
+        <button id="token__check__btn" class="btn-small" disabled onclick="confirmToken()">인증완료</button>
+      </div>
+    </div>
+
+    <select name="city" class="city" id="location">
+      <option disabled="true" selected="true">지역을 선책하세요</option>
+      <option>서울</option>
+      <option>인천</option>
+      <option>경기</option>
+    </select>
+    <div id="error__location" class="error"></div>  
+
+    <div class="gender">
+      <div>
+        <input type="radio" name="gender" id="gender__woman">
+        <div class="gender__text">여성</div>
+      </div>
+      <div>
+        <input type="radio" name="gender" id="gender__man">
+        <div class="gender__text">남성</div>
+      </div>
+    </div>
+    <div class="error error__gender" id="error__gender"></div>
+
+    <div class="divideLine"></div>
+    <button id="confirm__btn" class="btn-big" disabled onclick="checkValidation()">가입하기</button>
+
+  </div>
+
+</body>
