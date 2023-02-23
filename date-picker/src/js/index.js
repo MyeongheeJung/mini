@@ -44,14 +44,6 @@ class DatePicker {
     this.addEvent();
   }
 
-  initSelectedDate() {
-    this.selectedDate = { ...this.#calendarDate };
-  }
-  setDateInput() {
-    this.dateInputEl.textContent = this.formateDate(this.selectedDate.data);
-    this.dateInputEl.dataset.value = this.selectedDate.data;
-  }
-
   initCalendarDate() {
     const data = new Date();
     const date = data.getDate();
@@ -63,6 +55,15 @@ class DatePicker {
       month,
       year,
     };
+  }
+
+  initSelectedDate() {
+    this.selectedDate = { ...this.#calendarDate };
+  }
+
+  setDateInput() {
+    this.dateInputEl.textContent = this.formateDate(this.selectedDate.data);
+    this.dateInputEl.dataset.value = this.selectedDate.data;
   }
 
   assignElement() {
@@ -86,23 +87,26 @@ class DatePicker {
     );
   }
 
-  onClickSelectDate(event) {
-    const eventTarget = event.target;
-    if (eventTarget.dataset.date) {
+  onClickSelectDate(e) {
+    const target = e.target;
+    if (target.dataset.date) {
       this.calendarDatesEl
         .querySelector('.selected')
         ?.classList.remove('selected');
-      eventTarget.classList.add('selected');
+
+      target.classList.add('selected');
+
       this.selectedDate = {
         data: new Date(
           this.#calendarDate.year,
           this.#calendarDate.month,
-          eventTarget.dataset.date,
+          target.dataset.date,
         ),
         year: this.#calendarDate.year,
         month: this.#calendarDate.month,
-        date: eventTarget.dataset.date,
+        date: target.dataset.date,
       };
+
       this.setDateInput();
       this.calendarEl.classList.remove('active');
     }
